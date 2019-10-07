@@ -20,18 +20,16 @@ For Each ws In Worksheets
     Dim Stocks As Long
       Dim TotalStock As Long
         TotalStock = 0
-    Dim TickerValue As String
     Dim PriceChange As Double
         PriceChange = 0
-    Dim PreviousAmount as Double
-        PreviousAmount = 2
+    Dim FirstAmount as Double
+        FirstAmount = 2.00
     Dim PercentChange As Double
-        PercentChange = 0
+        PercentChange = 0.00
     Dim GreatestIncrease as Double
-        GreatestIncrease = 0
+        GreatestIncrease = 0.00
     Dim GreatestDecrease as Double
-        GreatestDecrease = 0
-    Dim LastRowValue as Double
+        GreatestDecrease = 0.00
     Dim GreatestTotalStock as Long
         GreatestTotalStock = 0
     Dim LastRow as Long
@@ -73,7 +71,7 @@ Cells(1,14).Value = "Total Stock Volume"
         TotalStock = 0
 
         'Part 2: Determine yearly change for each ticker by setting the formuals to find the values I'm looking for and then calculating
-        PriceOpen = ws.Range("C" + PreviousAmount)
+        PriceOpen = ws.Range("C" + FirstAmount)
         PriceClose = ws.Range("F" + i)
         YearlyChange = PriceOpen - PriceClose
         ws.Range("L" + NewTable).Value = YearlyChange
@@ -82,7 +80,7 @@ Cells(1,14).Value = "Total Stock Volume"
         'start by setting value in case the change is 0, to avoid an error of dividing by 0
         If PriceOpen = 0 then
             PercentChange = 0
-        Else PriceOpen = ws.Range("C" + PreviousAmount)
+        Else PriceOpen = ws.Range("C" + FirstAmount)
             PercentChange = YearlyChange / PriceOpen
         End if
         'then format findings into percentage format
@@ -97,7 +95,7 @@ Cells(1,14).Value = "Total Stock Volume"
 
         'Now add another row to the new table to continue the process for other tickers
         NewTable = NewTable + 1
-        PreviousAmount = i + 1
+        FirstAmount = i + 1
     
     End if
 
