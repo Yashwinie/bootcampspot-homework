@@ -13,25 +13,25 @@ For Each ws In Worksheets
 
 'Create variables to hold values I'm working with, including new information that I will find through this script
     Dim Ticker As String
-    Dim PriceOpen As Decimal
-    Dim PriceHigh As Decimal
-    Dim PriceLow As Decimal
-    Dim PriceClose As Decimal
+    Dim PriceOpen As Double
+    Dim PriceHigh As Double
+    Dim PriceLow As Double
+    Dim PriceClose As Double
     Dim Stocks As Long
       Dim TotalStock As Long
         TotalStock = 0
     Dim TickerValue As String
-    Dim PriceChange As Decimal
+    Dim PriceChange As Double
         PriceChange = 0
-    Dim PreviousAmount as Decimal
+    Dim PreviousAmount as Double
         PreviousAmount = 2
-    Dim PercentChange As Decimal
+    Dim PercentChange As Double
         PercentChange = 0
-    Dim GreatestIncrease as Decimal
+    Dim GreatestIncrease as Double
         GreatestIncrease = 0
-    Dim GreatestDecrease as Decimal
+    Dim GreatestDecrease as Double
         GreatestDecrease = 0
-    Dim LastRowValue as Decimal
+    Dim LastRowValue as Double
     Dim GreatestTotalStock as Long
         GreatestTotalStock = 0
     Dim LastRow as Long
@@ -65,10 +65,10 @@ Cells(1,14).Value = "Total Stock Volume"
         
         'Part 1: Publish each ticker name in the new table
         Ticker = ws.Cells(i, 1).Value
-        ws.Range("K", 2).Value = Ticker
+        ws.Range("K2").Value = Ticker
 
         'Part 4: Write each Ticker's total volume in the new table (completing this part here because it is easiest for me since I already have this information)
-        ws.Range("N", 2).Value = TotalStock
+        ws.Range("N2").Value = TotalStock
         'need to reset TotalStock each time after Total Stock Volume of each Ticker is calculated to prepare for new Ticker calculations
         TotalStock = 0
 
