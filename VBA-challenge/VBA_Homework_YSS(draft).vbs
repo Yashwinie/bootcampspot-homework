@@ -13,29 +13,29 @@ For Each ws In Worksheets
 
 'Create variables to hold values I'm working with, including new information that I will find through this script
     Dim Ticker As String
-    Dim PriceOpen As Double
-    Dim PriceHigh As Double
-    Dim PriceLow As Double
-    Dim PriceClose As Double
-    Dim Stocks As Double
-      Dim TotalStock As Double
+    Dim PriceOpen As Decimal
+    Dim PriceHigh As Decimal
+    Dim PriceLow As Decimal
+    Dim PriceClose As Decimal
+    Dim Stocks As Long
+      Dim TotalStock As Long
         TotalStock = 0
     Dim TickerValue As String
-    Dim PriceChange As Double
+    Dim PriceChange As Decimal
         PriceChange = 0
-    Dim PreviousAmount as Double
+    Dim PreviousAmount as Decimal
         PreviousAmount = 2
-    Dim PercentChange As Double
+    Dim PercentChange As Decimal
         PercentChange = 0
-    Dim GreatestIncrease as Double
+    Dim GreatestIncrease as Decimal
         GreatestIncrease = 0
-    Dim GreatestDecrease as Double
+    Dim GreatestDecrease as Decimal
         GreatestDecrease = 0
-    Dim LastRowValue as Double
-    Dim GreatestTotalStock as Double
+    Dim LastRowValue as Decimal
+    Dim GreatestTotalStock as Long
         GreatestTotalStock = 0
-    Dim LastRow as Double
-    Dim LastColumn as Double
+    Dim LastRow as Long
+    Dim LastColumn as Long
 
 'Variable to help add content to the new table I am creating
     Dim NewTable as Long
@@ -65,10 +65,10 @@ Cells(1,14).Value = "Total Stock Volume"
         
         'Part 1: Publish each ticker name in the new table
         Ticker = ws.Cells(i, 1).Value
-        ws.Range("K" + NewTable).Value = Ticker
+        ws.Range("K", 2).Value = Ticker
 
         'Part 4: Write each Ticker's total volume in the new table (completing this part here because it is easiest for me since I already have this information)
-        ws.Range("N" + NewTable).Value = TotalStock
+        ws.Range("N", 2).Value = TotalStock
         'need to reset TotalStock each time after Total Stock Volume of each Ticker is calculated to prepare for new Ticker calculations
         TotalStock = 0
 
