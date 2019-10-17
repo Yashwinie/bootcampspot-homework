@@ -47,22 +47,28 @@ with open(votes_csv, newline="") as csvfile:
             cVotes += 1
        
         #Calculate the percentage of votes that each candidate won
-    kPercent = kVotes / totalVotes
-    lPercent = lVotes / totalVotes
-    oPercent = oVotes / totalVotes
-    cPercent = cVotes / totalVotes
+    kPercent = kVotes / totalVotes * 100
+    lPercent = lVotes / totalVotes * 100
+    oPercent = oVotes / totalVotes * 100
+    cPercent = cVotes / totalVotes * 100
 
     candidateRank.append(kPercent)
     candidateRank.append(lPercent)
     candidateRank.append(oPercent)
     candidateRank.append(cPercent)
 
-    #update dictionary to store all of this informationc
+    #update dictionary to store all of this information
 
     candidates = ["Khan", "Li", "O'Tooley", "Correy"]
-    candidateDict = {key: value for key, value in zip(candidates, candidateRank)}
+    candidateVotes = [kVotes, lVotes, oVotes, cVotes]
     
+    for i in range(len(candidates)):
+        candidateDict[candidates[i]] = (candidateRank[i], candidateVotes[i])
+    
+
     #Find the winner of the election based on the popular vote
+  
+  
 
     #Print calculations in an analysis format in the terminal
     print("Election Results")
