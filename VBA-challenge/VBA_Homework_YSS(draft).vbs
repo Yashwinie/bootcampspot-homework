@@ -63,7 +63,7 @@ Cells(1,14).Value = "Total Stock Volume"
         
         'Part 1: Publish each ticker name in the new table
         Ticker = ws.Cells(i, 1).Value
-        ws.Range("K2").Value = Ticker
+        ws.Range("K2").Value = Ticker 'need to edit syntax to make it change rows each time
 
         'Part 4: Write each Ticker's total volume in the new table (completing this part here because it is easiest for me since I already have this information)
         ws.Range("N2").Value = TotalStock
