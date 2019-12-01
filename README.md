@@ -1,1 +1,0 @@
-# bootcampspot-homework
