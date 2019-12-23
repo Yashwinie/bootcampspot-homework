@@ -17,7 +17,8 @@ Base = automap_base()
 Base.prepare(engine, reflect=True)
 
 #Save reference to the table
-Weather = Base.classes.weather
+Measurement = Base.classes.measurement
+Station = Base.classes.station
 
 #Flask setup
 app = Flask(__name__)
@@ -32,3 +33,10 @@ def welcome():
         f"/api/v1.0/stations<br/>"
         f"/api/v1.0/tobs"
     )
+
+@app.route("/api/v1.0/precipitation")
+def precipitation():
+    #Create our session (link) from Python to the database
+    session = Session(engine)
+    
+    """Return a list of precipitation results, including the date and the precipitation"""
