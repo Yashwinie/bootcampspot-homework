@@ -3,9 +3,34 @@
     <head>
         <meta charset="UTF-8">
         <title> Temperature (F) vs. Latitude </title>
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 
     <body>
-    <p> sample text for trial </p>
+        
+        <ul class="nav">
+            <div class="dropdown">
+              <button class="dropbtn">Visualizations
+                <i class="fa fa-caret-down"></i>
+              </button>
+              <div class="dropdown-content">
+                <li><a href="temperature.html">Temperature</a></li>
+                <li><a href="humidity.html">Humidity</a></li>
+                <li><a href="cloudiness.html">Cloudiness</a></li>
+                <li><a href="windspeed.html">Wind Speed</a></li>
+                </div>
+              </div>
+            <li><a href="comparisons.html">Comparisons</a></li>
+            <li><a href="data.html">Data</a></li>
+            <li><a href="index.html">Home</a></li>
+          </ul>
+
+    <h1>Temperature (F) vs. Latitude</h1>
+
+    <img src="assets/images/Fig1.png" alt="City Latitude v Max Temp plot">
+
+    <p> This visualization showcases the relationship between a city's latitude (i.e. how close it is to the equator) and the temperature of that city.<br>
+        A clear trend exists: the closer a city is to the equator, the warmer that city tends to be for the day used in this analysis. </p>
+
     </body>
 </html>
