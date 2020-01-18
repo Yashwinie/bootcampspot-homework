@@ -6,7 +6,7 @@ var tableData = data;
 //reference to the table body
 var tbody = d3.select("tbody")
 
-//Loop through the data and console.log each object to check data
+//loop through the data and console.log each object to check data
 data.forEach(function(sighting) {
     console.log(sighting);
     //use d3 to append a table row 'tr' for each data object
@@ -22,4 +22,28 @@ data.forEach(function(sighting) {
     });
 });
 
-//PART 2 - LISTEN TO EVENT TO RETURN INFORMATION FOR USER SEARCH
+//PART 2 - LISTEN TO EVENT TO RETURN INFORMATION FOR USER SEARCH (FOR DATES 1/1/2010 TO 1/13/2010)
+
+//reference to the button on the page with the id property set to `filter-btn`
+var button = d3.select("#filter-btn");
+
+//use the `on` function in d3 to attach an event to the handler function
+button.on("click", handleClick);
+
+//define the click handler inline
+button.on("click", function() {
+  console.log("The filter button was clicked.");
+  console.log(d3.event.target);
+});
+
+/* Event handlers are just normal functions that can do anything you want
+button.on("click", function() {
+  d3.select(".giphy-me").html("<img src='https://gph.to/2Krfn0w' alt='giphy'>");
+});
+
+// Input fields can trigger a change event when new text is entered.
+inputField.on("change", function() {
+  var newText = d3.event.target.value;
+  console.log(newText);
+});
+
