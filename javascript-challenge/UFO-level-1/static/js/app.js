@@ -36,6 +36,27 @@ button.on("click", function() {
   console.log(d3.event.target);
 });
 
+button.on("click", function() {
+  var input, filter, found, table, tr, td, i, j;
+  input = document.getElementsByTagName("input");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("ufo-table");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+      if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+      found = true;
+      }
+    }
+    if (found) {
+      tr[i].style.display = "";
+      found = false;
+    } else {
+      tri[i].style.display = "none";
+    };
+});
+
+
 /* Event handlers are just normal functions that can do anything you want
 button.on("click", function() {
   d3.select(".giphy-me").html("<img src='https://gph.to/2Krfn0w' alt='giphy'>");
