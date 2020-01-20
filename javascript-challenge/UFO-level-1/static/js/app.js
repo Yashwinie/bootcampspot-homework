@@ -28,7 +28,7 @@ data.forEach(function(sighting) {
 var button = d3.select("#filter-btn");
 
 //use the `on` function in d3 to attach an event to the handler function
-button.on("click", handleClick);
+//button.on("click", handleClick);
 
 //define the click handler inline
 button.on("click", function() {
@@ -39,12 +39,12 @@ button.on("click", function() {
 button.on("click", function() {
   var input, filter, found, table, tr, td, i, j;
   input = document.getElementsByTagName("input");
-  filter = input.value.toUpperCase();
+  filter = input.value();
   table = document.getElementById("ufo-table");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[0];
-      if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+      if (td[j].innerHTML().indexOf(filter) > -1) {
       found = true;
       }
     }
@@ -55,16 +55,3 @@ button.on("click", function() {
       tri[i].style.display = "none";
     };
 });
-
-
-/* Event handlers are just normal functions that can do anything you want
-button.on("click", function() {
-  d3.select(".giphy-me").html("<img src='https://gph.to/2Krfn0w' alt='giphy'>");
-});
-
-// Input fields can trigger a change event when new text is entered.
-inputField.on("change", function() {
-  var newText = d3.event.target.value;
-  console.log(newText);
-});
-
