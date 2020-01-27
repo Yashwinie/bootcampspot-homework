@@ -6,12 +6,10 @@ var tableData = data;
 //reference to the table body
 var tbody = d3.select("tbody")
 
-//loop through the data and console.log each object to check data
+//loop through the data
 data.forEach(function(sighting) {
-    console.log(sighting);
     //use d3 to append a table row 'tr' for each data object
     var row = tbody.append("tr");
-    
     //use Object.entries to console.log each data value
     Object.entries(sighting).forEach(function([key, value]) {
         console.log(key, value);
@@ -22,36 +20,29 @@ data.forEach(function(sighting) {
     });
 });
 
-//PART 2 - LISTEN TO EVENT TO RETURN INFORMATION FOR USER SEARCH (FOR DATES 1/1/2010 TO 1/13/2010)
+//PART 2 - LISTEN TO EVENT TO RETURN INFORMATION FOR USER SEARCH (FOR DATES 1/1/2010 TO 1/13/2010
 
-//reference to the button on the page with the id property set to `filter-btn`
-var button = d3.select("#filter-btn");
+//Filter Button handler
+function handleFilter() {
+  //prevent the page from refreshing
+  d3.event.preventDefault();
+  //select the input value from the form
+  var input = d3.select("#datetime").node().value;
+  console.log(input);
+  //clear the input value
+  d3.select("#datetime").node().value = "";
+  //build the filtered table with the requested date
+  buildTable(input);
+};
 
-//use the `on` function in d3 to attach an event to the handler function
-//button.on("click", handleClick);
+//build function to filter table by search parameters
+function buildTable() {
+  return 
 
-//define the click handler inline
-button.on("click", function() {
-  console.log("The filter button was clicked.");
-  console.log(d3.event.target);
-});
+    console.log("The filter button was clicked.");
+    console.log(d3.event.target);
+};
 
-button.on("click", function() {
-  var input, filter, found, table, tr, td, i, j;
-  input = document.getElementsByTagName("input");
-  filter = input.value();
-  table = document.getElementById("ufo-table");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-      if (td[j].innerHTML().indexOf(filter) > -1) {
-      found = true;
-      }
-    }
-    if (found) {
-      tr[i].style.display = "";
-      found = false;
-    } else {
-      tri[i].style.display = "none";
-    };
-});
+
+//Add event listener for filter button
+d3.select("#filter-btn").on("click", handleFilter);
