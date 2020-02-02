@@ -45,7 +45,8 @@ function buildTable(input) {
         tri[i].style.display = "none";
       };
   
-
+  
+console.log("button was clickefd[=]==")  
 
 };
 
