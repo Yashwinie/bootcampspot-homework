@@ -20,56 +20,26 @@ data.forEach(function(sighting) {
     });
 });
 
-
-//
-function buildTable(input) {
-
-    console.log("this we are interested in");
-    console.log(input);
-    
-    var filter, found, table, tr, td, i, j;
-    //input = document.getElementsByTagName("input");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("ufo-table");
-    tr = table.getElementsByTagName("tr");
-    for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[0];
-        if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
-        found = true;
-        }
-      }
-      if (found) {
-        tr[i].style.display = "";
-        found = false;
-      } else {
-        tri[i].style.display = "none";
-      };
-  
-
-
-};
-
-
-
 //PART 2 - LISTEN TO EVENT TO RETURN INFORMATION FOR USER SEARCH (FOR DATES 1/1/2010 TO 1/13/2010
 
+//Select the filter button
+var filterButton = d3.select("#filter-btn");
+
 //Filter Button handler
-function handleFilter() {
+filterButton.on("click", function() {
   //prevent the page from refreshing
   d3.event.preventDefault();
-  //select the input value from the form
-  var input = d3.select("#datetime").node().value;
-  //console.log(input);
-  //clear the input value
-  d3.select("#datetime").node().value = "";
+  //select the input element and get the raw HTML node
+  var inputElement = d3.select("#datetime");
+  //get the value property of the input element
+  var inputValue = inputElement.property("value");
+  console.log(inputValue);
   //build the filtered table with the requested date
-  console.log("test");
-  buildTable(input);
-};
+  filteredData = data.filter(data.datetime === inputValue);
+  console.log(filteredData);
+  });
 
-//build function to filter table by search parameters
-
-
+//handleFilter();
 
 //Add event listener for filter button
-d3.select("#filter-btn").on("click", handleFilter);
+//d3.select("#filter-btn").on("click", handleFilter);
