@@ -39,23 +39,7 @@ Plotly.newPlot("plot", data, layout);
 
 
 //Display the sample metadata, i.e., an individual's demographic information.
-function buildData(sample) {
-    d3.json(url).then(function(data) {
-        var metadata = `/metadata/${sample}`;
-        d3.json(metaData).then(function(sample) {
-            //the information we have is going in the #sample-metadata id area of the html file
-            var sampleData = d3.select(`#sample-metadata`);
-            //clear existing metadata that might be in the #sample-metadata id area so that we can start with a clean slate
-            sampleData.html("");
-            //using d3 to append nwnew tags for values and keys in the metadata from the json file
-            Object.entries(sample).forEach(function([key, value]) {
-                var row = sampleData.append("p");
-                row.text (`${key}:${value}`)
-            });
-        });
-    });
-    };
-    
+
 
 //Display each key-value pair from the metadata JSON object somewhere on the page.
 
