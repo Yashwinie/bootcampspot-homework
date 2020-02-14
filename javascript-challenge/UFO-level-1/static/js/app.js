@@ -4,7 +4,7 @@ var tableData = data;
 //PART 1 - APPEND TABLE WITH DATA INTO THE HTML PAGE
 
 //reference to the table body
-var tbody = d3.select("tbody")/7
+var tbody = d3.select("tbody")
 
 //loop through the data
 data.forEach(function(sighting) {
