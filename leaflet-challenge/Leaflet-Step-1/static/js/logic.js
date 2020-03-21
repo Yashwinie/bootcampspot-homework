@@ -7,24 +7,6 @@ d3.json(queryUrl, function(data) {
     createFeatures(data.features);
 });
 
-// Loop through the json and create a circle market for each earthquake object
-// for (var i = 0; i < features.length; i++) {
-
-//   // Conditionals for countries points
-//   var color = "";
-//   if (features[i].mag > 200) {
-//     color = "yellow";
-//   }
-//   else if (countries[i].points > 100) {
-//     color = "blue";
-//   }
-//   else if (countries[i].points > 90) {
-//     color = "green";
-//   }
-//   else {
-//     color = "red";
-//   }
-
 function createFeatures(earthquakeData) {
     // Define a function we want to run once for each feature in the features array
     //markers based on magnitude size
@@ -66,7 +48,7 @@ function createFeatures(earthquakeData) {
 
     // Sending our earthquakes layer to the createMap function
   createMap(earthquakes);
-}
+};
 
 function createMap(earthquakes) {
 
@@ -111,4 +93,3 @@ function createMap(earthquakes) {
   L.control.layers(baseMaps, overlayMaps, {
     collapsed: false
   }).addTo(myMap);
-}
