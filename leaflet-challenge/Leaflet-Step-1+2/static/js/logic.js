@@ -46,13 +46,25 @@ function createFeatures(earthquakeData) {
       onEachFeature: onEachFeature
     });
 
+    var plates = L.geojason(plateData, {
+      oneEachFeature: onEachFeature
+    });
+
     // Sending our earthquakes layer to the createMap function
   createMap(earthquakes);
 };
 
 function createMap(earthquakes) {
 
-  // Define streetmap and darkmap layers
+  // Define layers
+
+  var satellite = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
+      attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+      maxZoom: 18,
+      id: "mapbox.satellite",
+      accessToken: API_KEY
+    });
+
   var streetmap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
     maxZoom: 18,
@@ -60,17 +72,10 @@ function createMap(earthquakes) {
     accessToken: API_KEY
   });
 
-  var darkmap = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
-    attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
-    maxZoom: 18,
-    id: "mapbox.dark",
-    accessToken: API_KEY
-  });
-
   // Define a baseMaps object to hold our base layers
   var baseMaps = {
-    "Street Map": streetmap,
-    "Dark Map": darkmap
+    "Satellite Map": satellite,
+    "Street Map": streetmap
   };
 
   // Create overlay object to hold our overlay layer
@@ -84,7 +89,7 @@ function createMap(earthquakes) {
       38.85, -19.61
     ],
     zoom: 3,
-    layers: [streetmap, earthquakes]
+    layers: [satellite, earthquakes, plates]
   });
 
   // Create a layer control
@@ -92,4 +97,4 @@ function createMap(earthquakes) {
   // Add the layer control to the map
   L.control.layers(baseMaps, overlayMaps, {
     collapsed: false
-  }).addTo(myMap);
+    }).addTo(myMap);
