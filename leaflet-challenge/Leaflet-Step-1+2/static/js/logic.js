@@ -1,5 +1,6 @@
-// Store our endpoint inside queryUrl
+// Store our endpoint inside queryUrl and platesURL
 var queryUrl = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_week.geojson"
+var platesURL = "../data/PB2002_boundaries.json"
 
 // Perform a GET request to the query URL
 d3.json(queryUrl, function(data) {
@@ -27,7 +28,8 @@ function createFeatures(earthquakeData) {
     }
     else {
       color = "yellow";
-    }
+    };
+
     // Give each feature a popup describing the place and time of the earthquake
     function onEachFeature(feature, layer) {
       L.circle({
@@ -38,7 +40,19 @@ function createFeatures(earthquakeData) {
         radius: feature[i].properties.mag * 1000
       }).bindPopup("<h3>" + feature.properties.place +
         "</h3><hr><p>" + new Date(feature.properties.time) + "</p>");
-    }
+    };
+
+// Perform a GET request to the platesURL
+d3.json(platesURL, function(platesdata) {
+  // Once we get a response, send the data.features object to the createFeatures function --- FEATURES IS SOMETHING SPECIFIC TO GEOJSON AND LAYERS
+  L.geoJSON(platesdata, {
+    style: {
+      "color": "yellow",
+      "weight": 3,
+      "opacity": 1
+    };
+  });
+});
   
     // Create a GeoJSON layer containing the features array on the earthquakeData object
     // Run the onEachFeature function once for each piece of data in the array
@@ -46,12 +60,13 @@ function createFeatures(earthquakeData) {
       onEachFeature: onEachFeature
     });
 
-    var plates = L.geojason(plateData, {
+    var plates = L.geojason(platesData, {
       oneEachFeature: onEachFeature
     });
 
     // Sending our earthquakes layer to the createMap function
   createMap(earthquakes);
+  createMap(plates);
 };
 
 function createMap(earthquakes) {
@@ -80,7 +95,8 @@ function createMap(earthquakes) {
 
   // Create overlay object to hold our overlay layer
   var overlayMaps = {
-    Earthquakes: earthquakes
+    "Earthquakes": earthquakes,
+    "Tectonic": plates
   };
 
   // Create our map, giving it the streetmap and earthquakes layers to display on load
