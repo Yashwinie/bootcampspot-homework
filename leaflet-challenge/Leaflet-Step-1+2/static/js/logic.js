@@ -42,7 +42,6 @@ function createFeatures(earthquakeData) {
       }).bindPopup("<h3>" + feature.properties.place +
         "</h3><hr><p>" + new Date(feature.properties.time) + "</p>");
     };
-  };
 
 // Perform a GET request to the platesURL
 d3.json(platesURL, function(platesdata) {
@@ -76,4 +75,5 @@ d3.json(platesURL, function(platesdata) {
   // Add the layer control to the map
   L.control.layers(baseMaps, overlayMaps, {
     collapsed: false
-    }).addTo(myMap)
+    }).addTo(myMap);
+  };
